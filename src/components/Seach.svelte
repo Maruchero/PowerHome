@@ -24,7 +24,7 @@
     "How to undo delete System32",
     "Why don't I have any friends",
     "Is it worth a kidney for a 4090",
-    "PowerHome",
+    "What is PowerHome",
     "Search",
   ];
   let placeholder = placeholders.random();
@@ -124,16 +124,16 @@
   @keyframes open-search-bar {
     0% {
       max-width: 50px;
-      translate: -50% -150%;
+      translate: -50% -200%;
       padding: 0;
     }
     50% {
-      translate: -50% 0;
+      translate: -50% -50%;
       max-width: 50px;
       padding: 0;
     }
     100% {
-      translate: -50% 0;
+      translate: -50% -50%;
       padding-left: 25px;
       max-width: 400px;
     }
