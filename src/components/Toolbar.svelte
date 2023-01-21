@@ -93,7 +93,7 @@
   }
 
   .icon {
-    height: 2rem;
+    height: 2.2rem;
     aspect-ratio: 1;
     border-radius: 50%;
 
@@ -105,7 +105,7 @@
   }
 
   .icon:hover {
-    background-color: #fff8;
-    box-shadow: 0 0 5px #0003;
+    background-color: var(--hover-background2);
+    box-shadow: 0 0 5px var(--hover-shadow);
   }
 </style>

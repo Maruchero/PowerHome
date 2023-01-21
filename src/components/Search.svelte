@@ -47,7 +47,9 @@
   }
 </script>
 
+<!-- HTML -->
 <form
+  class="card"
   method="get"
   action="https://www.google.com/search"
   style:animation-duration={animationDuration}
@@ -77,6 +79,7 @@
   </div>
 </form>
 
+<!-- Style -->
 <style>
   form {
     position: absolute;
@@ -88,11 +91,7 @@
     align-items: center;
     justify-content: space-between;
 
-    background-color: #fff7;
-    backdrop-filter: blur(5px);
     border-radius: 1000px;
-
-    box-shadow: -5px -5px 10px #fff4, 5px 5px 10px #0004;
 
     width: 80vw;
     max-width: 400px;
@@ -116,6 +115,7 @@
     font-size: 1.3rem;
     background: none;
     flex: 1 1 auto;
+    color: var(--text-color1);
   }
 
   input:focus-within {
@@ -155,7 +155,7 @@
     display: flex;
     width: 100%;
 
-    color: #22222a;
+    color: var(--text-color2);
   }
 
   .placeholder span {
@@ -164,7 +164,7 @@
 
     white-space: pre;
 
-    transition: all .5s ease-out;
+    transition: all 0.5s ease-out;
   }
 
   .placeholder.active span {
@@ -179,6 +179,7 @@
     background: none;
     border: inherit;
     font-size: 1.3rem;
+    color: var(--text-color1);
   }
 
   .search-button {
@@ -190,12 +191,12 @@
     align-items: center;
     justify-content: center;
 
-    transition: background-color 0.2s, box-shadow .2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
   }
 
   .search-button:hover,
   .search-button:focus-within {
-    background: #fff5;
-    box-shadow: 0 0 5px #0003;
+    background: var(--hover-background1);
+    box-shadow: 0 0 5px var(--hover-shadow);
   }
 </style>

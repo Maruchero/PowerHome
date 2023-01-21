@@ -19,7 +19,7 @@
 
 <!-- HTML -->
 <div class="dock">
-  <div class="links">
+  <div class="links card">
     {#each links as link}
       <a href={link} title={link} style:--icon="url({iconApi + link})"><i /></a>
     {/each}
@@ -43,9 +43,6 @@
 
     padding: 5px;
     border-radius: 15px;
-    background-color: #fff7;
-    backdrop-filter: blur(5px);
-    box-shadow: -5px -5px 10px #fff4, 5px 5px 10px #0004;
   }
 
   a {
@@ -64,7 +61,7 @@
   }
 
   a:hover {
-    background-color: #fff4;
-    box-shadow: 0 0 5px #0003;
+    background-color: var(--hover-background1);
+    box-shadow: 0 0 5px var(--hover-shadow);
   }
 </style>
