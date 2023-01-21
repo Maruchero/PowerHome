@@ -54,6 +54,7 @@
 >
   <div class="input-group">
     <input
+      autocomplete="off"
       type="text"
       name="q"
       bind:this={input}
@@ -163,7 +164,7 @@
 
     white-space: pre;
 
-    transition: all 0.3s ease-out;
+    transition: all .5s ease-out;
   }
 
   .placeholder.active span {
@@ -189,11 +190,12 @@
     align-items: center;
     justify-content: center;
 
-    transition: background-color 0.3s;
+    transition: background-color 0.2s, box-shadow .2s;
   }
 
   .search-button:hover,
   .search-button:focus-within {
     background: #fff5;
+    box-shadow: 0 0 5px #0003;
   }
 </style>

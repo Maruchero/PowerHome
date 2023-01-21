@@ -2,22 +2,26 @@
 <script>
   let tools = [
     {
+      name: "bookmark",
+      class_: "regular",
+      onclick: null,
+      visibility: "hide",
+    },
+    {
       name: "pencil",
+      class_: "solid",
       onclick: null,
       visibility: "hide",
     },
     {
-      name: "a",
+      name: "github",
+      class_: "brands",
       onclick: null,
       visibility: "hide",
     },
     {
-      name: "cube",
-      onclick: null,
-      visibility: "hide",
-    },
-    {
-      name: "trash",
+      name: "stack-overflow",
+      class_: "brands",
       onclick: null,
       visibility: "hide",
     },
@@ -56,9 +60,9 @@
   <button class="icon">
     <i class="fa fa-gear" />
   </button>
-  {#each tools as { name, onclick, visibility }, i}
+  {#each tools as { name, class_, onclick, visibility }, i}
     <button class="icon {visibility}" on:click={onclick}>
-      <i class="fa fa-{name}" />
+      <i class="fa-{class_} fa-{name}" />
     </button>
   {/each}
 </div>
@@ -75,19 +79,21 @@
   .toolbar {
     box-sizing: border-box;
     width: 100%;
+    height: 5rem;
     position: absolute;
 
     display: flex;
     flex-flow: row-reverse;
-    align-items: center;
+    align-items: flex-start;
     padding: 5px;
     gap: 10px;
 
-    color: white;
+    color: black;
     font-size: 1.2rem;
   }
 
   .icon {
+    height: 2rem;
     aspect-ratio: 1;
     border-radius: 50%;
 
@@ -100,5 +106,6 @@
 
   .icon:hover {
     background-color: #fff8;
+    box-shadow: 0 0 5px #0003;
   }
 </style>
