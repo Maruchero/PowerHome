@@ -1,12 +1,12 @@
 <script>
-  import Seach from "$components/Seach.svelte";
+  import Search from "$components/Search.svelte";
   import background from "$img/background.jpg";
   import Toolbar from "../components/Toolbar.svelte";
 </script>
 
 <Toolbar />
 <div class="background" style="background-image: url({background});" />
-<Seach />
+<Search />
 
 <style>
   .background {
