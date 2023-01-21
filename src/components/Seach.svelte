@@ -9,27 +9,30 @@
 
   // Placeholders
   const placeholders = [
-    "Why is FBI in my pc",
     "Tweaking Shrek",
     "Cute cats videos",
     "Gym playlist 24 hours",
     "Does my waifu love me",
     "What to do my bath is on fire",
+    "Why is FBI trying to break in",
     "maruchero.github.io",
-    "I've failed art class. Where is Germany",
     "What does 'girls' mean",
     "Why am I so dumb?",
     "How to make friends",
-    "America can be defined with one word",
     "Why don't I have a life",
+    "Why this app looks so ugly",
     "How to undo delete System32",
     "Why don't I have any friends",
+    "Is it worth a kidney for a 4090",
+    "PowerHome",
     "Search",
   ];
   let placeholder = placeholders.random();
 
   let placeholderHidden = false;
-  $: {placeholderHidden = inputContent.length > 0;}
+  $: {
+    placeholderHidden = inputContent.length > 0;
+  }
 
   // Focus on input
   let input;
@@ -44,22 +47,32 @@
   }
 </script>
 
-<form method="get" action="https://www.google.com/search">
-  <input
-    type="text"
-    name="q"
-    bind:this={input}
-    bind:value={inputContent}
-    on:keydown={endAnimation}
-    style:animation-duration={animationDuration}
-  />
-  <div class="placeholder" class:active={placeholderHidden}>
-    {#each placeholder as c}
-      <span
-      style:--y="{Math.trunc((Math.random() - 0.5) * 80)}px"
-      style:--r="{Math.trunc((Math.random() - 0.5) * 30)}deg"
-      >{c}</span>
-    {/each}
+<form
+  method="get"
+  action="https://www.google.com/search"
+  style:animation-duration={animationDuration}
+>
+  <div class="input-group">
+    <input
+      type="text"
+      name="q"
+      bind:this={input}
+      bind:value={inputContent}
+      on:keydown={endAnimation}
+    />
+    <div class="placeholder" class:active={placeholderHidden}>
+      {#each placeholder as c}
+        <span
+          style:--y="{Math.trunc((Math.random() - 0.5) * 80)}px"
+          style:--r="{Math.trunc((Math.random() - 0.5) * 30)}deg">{c}</span
+        >
+      {/each}
+    </div>
+  </div>
+  <div class="search-button">
+    <button type="submit">
+      <i class="fa fa-search" />
+    </button>
   </div>
 </form>
 
@@ -69,24 +82,39 @@
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-  }
 
-  input {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     background-color: #fff5;
     backdrop-filter: blur(10px);
-    padding: 12px 25px;
     border-radius: 1000px;
 
     box-shadow: -5px -5px 10px #fff3, 5px 5px 10px #0003;
 
     width: 80vw;
-    max-width: 350px;
+    max-width: 400px;
+    height: 3rem;
 
-    border: 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 
     animation: open-search-bar 1s ease-in-out 0s forwards;
+  }
+
+  .input-group {
+    position: relative;
+    width: 100%;
+  }
+
+  input {
+    padding: 0;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    font-size: 1.3rem;
+    background: none;
+    flex: 1 1 auto;
   }
 
   input:focus-within {
@@ -95,15 +123,19 @@
 
   @keyframes open-search-bar {
     0% {
-      max-width: 0;
-      translate: 0 -150%;
+      max-width: 50px;
+      translate: -50% -150%;
+      padding: 0;
     }
     50% {
-      translate: 0 0;
-      max-width: 0;
+      translate: -50% 0;
+      max-width: 50px;
+      padding: 0;
     }
     100% {
-      max-width: 350px;
+      translate: -50% 0;
+      padding-left: 25px;
+      max-width: 400px;
     }
   }
 
@@ -111,7 +143,6 @@
   .placeholder {
     position: absolute;
     top: 50%;
-    left: 25px;
     translate: 0 -50%;
 
     overflow-x: hidden;
@@ -121,7 +152,7 @@
     pointer-events: none;
 
     display: flex;
-    max-width: calc(100% - 50px);
+    width: 100%;
 
     color: #444;
   }
@@ -129,16 +160,40 @@
   .placeholder span {
     display: block;
     float: left;
-    
-    white-space: pre;
-    font-size: 1.3rem;
 
-    transition: all .3s ease-out;
+    white-space: pre;
+
+    transition: all 0.3s ease-out;
   }
 
   .placeholder.active span {
     translate: 0 var(--y);
     rotate: var(--r);
     opacity: 0;
+  }
+
+  /* Search button */
+  button {
+    padding: 0;
+    background: none;
+    border: inherit;
+    font-size: 1.3rem;
+  }
+
+  .search-button {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: background-color 0.3s;
+  }
+
+  .search-button:hover,
+  .search-button:focus-within {
+    background: #fff5;
   }
 </style>
