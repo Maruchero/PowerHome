@@ -87,11 +87,11 @@
     align-items: center;
     justify-content: space-between;
 
-    background-color: #fff5;
-    backdrop-filter: blur(10px);
+    background-color: #fff7;
+    backdrop-filter: blur(5px);
     border-radius: 1000px;
 
-    box-shadow: -5px -5px 10px #fff3, 5px 5px 10px #0003;
+    box-shadow: -5px -5px 10px #fff4, 5px 5px 10px #0004;
 
     width: 80vw;
     max-width: 400px;
@@ -154,7 +154,7 @@
     display: flex;
     width: 100%;
 
-    color: #444;
+    color: #22222a;
   }
 
   .placeholder span {
