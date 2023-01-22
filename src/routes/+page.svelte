@@ -1,11 +1,13 @@
 <script>
   // Components
-  import Dock from "../components/Dock.svelte";
+  import Dock from "$components/Dock.svelte";
   import Search from "$components/Search.svelte";
-  import Toolbar from "../components/Toolbar.svelte";
-  import ImageSlider from "../components/ImageSlider.svelte";
+  import Toolbar from "$components/Toolbar.svelte";
+  import ImageSlider from "$components/ImageSlider.svelte";
 
-  let theme = 0 ? "light" : "dark";
+  let themeBool;
+  let theme;
+  $: theme = themeBool ? "light" : "dark";
 </script>
 
 <!-- Theme -->
@@ -14,7 +16,7 @@
 <!-- HTML -->
 <div class="{theme}-theme">
   <ImageSlider />
-  <Toolbar />
+  <Toolbar bind:themeBool={themeBool} />
   <Search />
   <Dock />
 </div>
@@ -31,8 +33,9 @@
 
   :global(.light-theme .card) {
     background-color: #fff7;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     box-shadow: -5px -5px 10px #fff4, 5px 5px 10px #0004;
+    transition: all .3s;
   }
 
   :global(.dark-theme) {
@@ -45,8 +48,13 @@
   }
 
   :global(.dark-theme .card) {
-    background-color: #181818d5;
-    backdrop-filter: blur(5px);
+    background-image: linear-gradient(
+      135deg,
+      #111111d0,
+      #202020d0
+    ); /* #181818d5 */
+    backdrop-filter: blur(10px);
     box-shadow: -5px -5px 10px #ffffff17, 5px 5px 10px #0007;
+    transition: all .3s;
   }
 </style>

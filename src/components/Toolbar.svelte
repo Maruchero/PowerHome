@@ -1,5 +1,8 @@
 <!-- JAVASCRIPT -->
 <script>
+  import ThemeSelector from "$components/ThemeSelector.svelte";
+
+  export let themeBool;
   let tools = [
     {
       name: "bookmark",
@@ -62,7 +65,11 @@
   </button>
   {#each tools as { name, class_, onclick, visibility }, i}
     <button class="icon {visibility}" on:click={onclick}>
-      <i class="fa-{class_} fa-{name}" />
+      {#if i == 1}
+        <ThemeSelector bind:value={themeBool} />
+      {:else}
+        <i class="fa-{class_} fa-{name}" />
+      {/if}
     </button>
   {/each}
 </div>
@@ -90,6 +97,7 @@
     gap: 10px;
 
     color: black;
+    filter: drop-shadow(0 0 7px #fff8);
     font-size: 1.2rem;
   }
 
