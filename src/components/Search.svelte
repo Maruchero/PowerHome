@@ -34,14 +34,16 @@
     placeholderHidden = inputContent.length > 0;
   }
 
-  // Focus on input
+  // Focus on input and start animation
   let input;
+  let inputAnimation = false;
   onMount(() => {
     input.focus();
+    inputAnimation = true;
   });
 
   // If user starts typing -> end initail animation
-  let animationDuration = "1s";
+  let animationDuration = "1.5s";
   function endAnimation() {
     animationDuration = "0s";
   }
@@ -52,6 +54,7 @@
   class="card"
   method="get"
   action="https://www.google.com/search"
+  class:animate={inputAnimation}
   style:animation-duration={animationDuration}
 >
   <div class="input-group">
@@ -91,15 +94,18 @@
     align-items: center;
     justify-content: space-between;
 
-    border-radius: 1000px;
-
     width: 80vw;
-    max-width: 400px;
     height: 3rem;
+    border-radius: 1000px;
 
     font-size: 1.2rem;
 
-    animation: open-search-bar 1s ease-in-out 0s forwards;
+    max-width: 48px;
+    translate: -50% -200%;
+  }
+
+  form.animate {
+    animation: open-search-bar 1500ms ease-in-out 0ms forwards;
   }
 
   .input-group {
@@ -124,14 +130,14 @@
 
   @keyframes open-search-bar {
     0% {
-      max-width: 50px;
+      max-width: 48px;
       translate: -50% -200%;
-      padding: 0;
+      padding-left: 0;
     }
     50% {
       translate: -50% -50%;
-      max-width: 50px;
-      padding: 0;
+      max-width: 48px;
+      padding-left: 0;
     }
     100% {
       translate: -50% -50%;
