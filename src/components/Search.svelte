@@ -151,6 +151,7 @@
     padding: 100px 0;
 
     pointer-events: none;
+    user-select: none;
 
     display: flex;
     width: 100%;

@@ -11,6 +11,7 @@
   let animate = [];
   let slideback = [];
   let direction = 1;
+  let mousehover = false;
 
   function nextImage() {
     return activeIndex >= images.length - 1 ? 0 : activeIndex + 1;
@@ -28,10 +29,12 @@
   let drag = 0;
 
   function mouseDown(e) {
-    mousedown = true;
-    mouseDownAt = { x: e.clientX, y: e.clientY };
-    slideback[behindIndex] = false;
-    slideback[activeIndex] = false;
+    if (mousehover) {
+      mousedown = true;
+      mouseDownAt = { x: e.clientX, y: e.clientY };
+      slideback[behindIndex] = false;
+      slideback[activeIndex] = false;
+    }
   }
 
   function mouseUp(e) {
@@ -53,7 +56,7 @@
       if (deltaX > animateAt || deltaX < -animateAt) {
         animate[behindIndex] = false;
         direction = Math.sign(drag);
-        let t = activeIndex
+        let t = activeIndex;
         drag = 0;
         mousedown = false;
         animate[t] = true;
@@ -73,7 +76,12 @@
   on:mousemove={mouseMove}
 />
 
-<div class="container" style:--drag={drag}>
+<div
+  class="container"
+  style:--drag={drag}
+  on:mouseenter={() => (mousehover = true)}
+  on:mouseleave={() => (mousehover = false)}
+>
   {#each images as image, i}
     <span
       class="image"
@@ -100,6 +108,7 @@
 
   .image {
     pointer-events: none;
+    user-select: none;
 
     display: block;
     width: 100%;
@@ -126,7 +135,7 @@
   }
 
   .slideback {
-    transition: translate .3s ease-out;
+    transition: translate 0.3s ease-out;
   }
 
   .behind {
@@ -140,7 +149,7 @@
       z-index: 0;
     }
     99% {
-      translate: calc(var(--direction) * 250px) 0;
+      translate: calc(var(--direction) * 350px) 0;
       opacity: 0;
       z-index: 0;
     }

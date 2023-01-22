@@ -78,9 +78,10 @@
 
   .toolbar {
     box-sizing: border-box;
-    width: 100%;
+    width: max-content;
     height: 5rem;
     position: absolute;
+    right: 0;
 
     display: flex;
     flex-flow: row-reverse;
