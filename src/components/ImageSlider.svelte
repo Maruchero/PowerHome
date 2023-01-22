@@ -11,7 +11,7 @@
   let animate = [];
   let slideback = [];
   let direction = 1;
-  let mousehover = false;
+  let mousehover = true;
 
   function nextImage() {
     return activeIndex >= images.length - 1 ? 0 : activeIndex + 1;
@@ -131,7 +131,7 @@
   }
 
   .animate {
-    animation: slide 1s ease-out forwards;
+    animation: slide 500ms ease-out forwards;
   }
 
   .slideback {
@@ -149,13 +149,13 @@
       z-index: 0;
     }
     99% {
-      translate: calc(var(--direction) * 350px) 0;
+      translate: calc(var(--direction) * 400px) 0;
       opacity: 0;
       z-index: 0;
     }
     100% {
       z-index: -1;
-      opacity: 1;
+      opacity: 0;
     }
   }
 </style>
