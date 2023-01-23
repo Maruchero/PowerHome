@@ -4,8 +4,14 @@
   import Search from "$components/Search.svelte";
   import Toolbar from "$components/Toolbar.svelte";
   import ImageSlider from "$components/ImageSlider.svelte";
+  import { storage } from "$modules/store";
 
-  let themeBool;
+  // Get theme from localstorage
+  let t = storage.get("theme");
+  if (!$t) t = storage.set("theme", true);
+  $: t.set(themeBool);
+
+  let themeBool = $t === "true";
   let theme;
   $: theme = themeBool ? "light" : "dark";
 </script>
@@ -16,9 +22,9 @@
 <!-- HTML -->
 <div class="{theme}-theme">
   <ImageSlider />
-  <Toolbar bind:themeBool={themeBool} />
+  <Toolbar bind:themeBool />
   <Search />
-  <Dock />
+  <!-- <Dock /> -->
 </div>
 
 <style>
@@ -35,7 +41,7 @@
     background-color: #fff7;
     backdrop-filter: blur(10px);
     box-shadow: -5px -5px 10px #fff4, 5px 5px 10px #0004;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
   :global(.dark-theme) {
@@ -55,6 +61,6 @@
     ); /* #181818d5 */
     backdrop-filter: blur(10px);
     box-shadow: -5px -5px 10px #ffffff17, 5px 5px 10px #0007;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 </style>
