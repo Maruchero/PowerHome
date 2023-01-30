@@ -1,5 +1,6 @@
 <!-- JAVASCRIPT -->
 <script>
+  import { goto } from "$app/navigation";
   import ThemeSelector from "$components/ThemeSelector.svelte";
 
   export let themeBool;
@@ -11,21 +12,21 @@
       visibility: "hide",
     },
     {
-      name: "pencil",
-      class_: "solid",
+      name: "ThemeSelector",
+      class_: "none",
       onclick: null,
       visibility: "hide",
     },
     {
       name: "github",
       class_: "brands",
-      onclick: null,
+      onclick: () => goto("https://github.com/Maruchero"),
       visibility: "hide",
     },
     {
       name: "stack-overflow",
       class_: "brands",
-      onclick: null,
+      onclick: () => goto("https://stackoverflow.com/users/16529391/pasta64"),
       visibility: "hide",
     },
   ];
@@ -60,7 +61,7 @@
 
 <!-- HTML -->
 <div class="toolbar" on:mouseenter={showIcons} on:mouseleave={hideIcons}>
-  <button class="icon">
+  <button class="icon" on:click={() => goto("settings/")}>
     <i class="fa fa-gear" />
   </button>
   {#each tools as { name, class_, onclick, visibility }, i}
