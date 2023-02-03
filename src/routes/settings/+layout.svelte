@@ -5,6 +5,8 @@
 
   let showSidenav = true;
   let alwaysShowSidenav = true;
+
+  export let active = 0;
 </script>
 
 <!-- HEAD -->
@@ -33,7 +35,7 @@
   <div class="nav">
     <Topnav bind:showSidenav {alwaysShowSidenav} />
   </div>
-  <Sidenav shown={showSidenav} bind:alwaysShown={alwaysShowSidenav} />
+  <Sidenav shown={showSidenav} bind:alwaysShown={alwaysShowSidenav} {active} />
   <main>
     <slot />
   </main>
@@ -42,7 +44,7 @@
 <!-- STYLE -->
 <style>
   :global(body) {
-    background: #f6f6f7;
+    background: #f6f6f7!important;
   }
 
   .app {

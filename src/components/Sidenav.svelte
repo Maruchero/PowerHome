@@ -18,21 +18,29 @@
   $: style = {
     width: shown ? width.open : width.close,
   };
+
+  // Active
+  export let active = 0;
+  let activeArray = [false * 4];
+  $: {
+    activeArray = [false * 4];
+    activeArray[active] = true;
+  }
 </script>
 
 <div class="container p-0" style="width: {style?.width ?? width.open}">
   <div class="p-3 content">
-    <a href="settings/general/">
-      <button class="btn btn-light">General</button>
+    <a href="/settings/">
+      <button class="btn btn-light" class:active={activeArray[0]}>General</button>
     </a>
-    <a href="settings/backdrops/">
-      <button class="btn btn-light">Backdrops</button>
+    <a href="/settings/backdrops/">
+      <button class="btn btn-light" class:active={activeArray[1]}>Backdrops</button>
     </a>
-    <a href="settings/bookmarks/">
-      <button class="btn btn-light">Bookmarks</button>
+    <a href="/settings/bookmarks/">
+      <button class="btn btn-light" class:active={activeArray[2]}>Bookmarks</button>
     </a>
-    <a href="settings/user/">
-      <button class="btn btn-light">User</button>
+    <a href="/settings/user/">
+      <button class="btn btn-light" class:active={activeArray[3]}>User</button>
     </a>
   </div>
 </div>
@@ -53,10 +61,17 @@
     width: max(20vw, 270px);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: .5rem;
   }
 
   button {
     width: 100%;
+    border: 1px solid #99ccff;
+  }
+
+  button.active {
+    border: 0;
+    background: #5ba4ee;
+    outline: 5px solid lightblue;
   }
 </style>

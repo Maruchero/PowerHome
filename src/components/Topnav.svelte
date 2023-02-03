@@ -12,7 +12,7 @@
 <nav>
   <div class="left">
     <button class="item fa fa-bars" on:click={toggleSidenav} />
-    <a class="item fa fa-house" href="./"><i /></a>
+    <a class="item fa fa-house" href="/"><i /></a>
   </div>
   <div class="logo">
     <h2 class="mb-0">Settings</h2>
