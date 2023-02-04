@@ -1,40 +1,22 @@
 <script>
-  let themes = [
-    {
-      name: "Anime",
-      images: [
-        "/img/anime/background0.jpg",
-        "/img/anime/background1.jpg",
-        "/img/anime/background2.jpg",
-        "/img/anime/background3.jpg",
-      ],
-    },
-    {
-      name: "Minecraft landscapes",
-      images: [
-        "/img/minecraft_landscapes/background0.webp",
-        "/img/minecraft_landscapes/background1.jpg",
-        "/img/minecraft_landscapes/background2.png",
-      ],
-    },
-    {
-      name: "Nature",
-      images: [
-        "/img/nature/background0.jpg",
-        "/img/nature/background1.jpg",
-        "/img/nature/background2.jpg",
-        "/img/nature/background3.jpg",
-      ],
-    },
-    {
-      name: "Windows 11",
-      images: [
-        "/img/windows_11/background0.jpg",
-        "/img/windows_11/background1.jpg",
-        "/img/windows_11/background2.jpg",
-      ],
-    },
-  ];
+  import { wallpapers, DEFAULT, CUSTOM } from "$modules/wallpapers";
+  import { storage } from "$modules/store";
+
+  // Get wallpapers, otherwise set defaults
+  let customWallpapers = storage.get("wallpapers");
+  if (!$customWallpapers) customWallpapers = storage.set("wallpapers", []);
+
+  // Wallpaper collection and index
+  let wallpaperCollection = storage.get("wallpaperCollection");
+  if (!$wallpaperCollection)
+    wallpaperCollection = storage.set("wallpaperCollection", DEFAULT);
+  let wallpaperIndex = storage.get("wallpaperIndex");
+  if (!$wallpaperIndex) wallpaperIndex = storage.set("wallpaperIndex", DEFAULT);
+
+  function setWallpaper(collection, index) {
+    wallpaperCollection.set(collection);
+    wallpaperIndex.set(index);
+  }
 </script>
 
 <!-- HTML -->
@@ -43,32 +25,52 @@
 <div class="cards mb-4">
   <p>Choose a theme from the default ones</p>
   <div class="card-list">
-    {#each themes as { name, images }, i}
-      <div class="card">
-        <div class="images">
-          {#each [...images].reverse() as image, j}
-            <img src={image} alt="" style:--ord={j} />
-          {/each}
-        </div>
-        <div class="placeholder">
-          {name}
-        </div>
-      </div>
-    {/each}
+    {#if wallpapers}
+      {#each wallpapers as { name, images }, i}
+        <button class="card" on:click={() => setWallpaper(DEFAULT, i)}>
+          <div class="images">
+            {#each [...images].reverse() as image, j}
+              <img src={image} alt="" style:--ord={j} />
+            {/each}
+          </div>
+          <div class="placeholder">
+            {name}
+          </div>
+        </button>
+      {/each}
+    {/if}
   </div>
 </div>
 
 <div class="cards">
   <p>Or create a new theme</p>
   <div class="card-list">
-    <button>
-      <div class="card">+</div>
-    </button>
+    {#if $customWallpapers}
+      {#each $customWallpapers as { name, images }, i}
+        <button class="card" on:click={() => setWallpaper(CUSTOM, i)}>
+          <div class="images">
+            {#each [...images].reverse() as image, j}
+              <img src={image} alt="" style:--ord={j} />
+            {/each}
+          </div>
+          <div class="placeholder">
+            {name}
+          </div>
+        </button>
+      {/each}
+    {/if}
+    <button class="card" id="add-theme">+</button>
   </div>
 </div>
 
 <!-- STYLE -->
 <style>
+  button {
+    padding: 0;
+    border: 0;
+    background: inherit;
+  }
+
   p {
     color: #555;
     margin-bottom: 0.5em;
@@ -108,7 +110,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: red;
   }
 
   .images img {
@@ -128,13 +129,19 @@
     right: calc(var(--ord) * 40px);
   }
 
-  /* Custome themes */
-  button {
-    padding: 0;
-    border: 0;
-    background: inherit;
-    line-height: 180px;
+  /* Custom themes */
+  #add-theme {
+    display: flex;
+    align-items: center;
+
+    line-height: 11.3rem;
     font-size: 13rem;
     color: #ddd;
+
+    background: #eee;
+  }
+
+  button:focus-within {
+    outline: none;
   }
 </style>

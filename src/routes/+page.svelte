@@ -8,10 +8,10 @@
 
   // Get theme from localstorage
   let t = storage.get("theme");
-  if (!$t) t = storage.set("theme", true);
+  if (!$t) t = storage.set("theme", false);
   $: t.set(themeBool);
 
-  let themeBool = $t === "true";
+  let themeBool = $t === true;
   let theme;
   $: theme = themeBool ? "light" : "dark";
 </script>

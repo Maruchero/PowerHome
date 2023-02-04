@@ -30,16 +30,16 @@
 
 <div class="container p-0" style="width: {style?.width ?? width.open}">
   <div class="p-3 content">
-    <a href="/settings/">
+    <a href="/settings">
       <button class="btn btn-light" class:active={activeArray[0]}>General</button>
     </a>
-    <a href="/settings/backdrops/">
+    <a href="/settings/backdrops">
       <button class="btn btn-light" class:active={activeArray[1]}>Backdrops</button>
     </a>
-    <a href="/settings/bookmarks/">
+    <a href="/settings/bookmarks">
       <button class="btn btn-light" class:active={activeArray[2]}>Bookmarks</button>
     </a>
-    <a href="/settings/user/">
+    <a href="/settings/user">
       <button class="btn btn-light" class:active={activeArray[3]}>User</button>
     </a>
   </div>

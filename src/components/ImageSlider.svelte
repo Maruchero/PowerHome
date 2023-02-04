@@ -1,10 +1,26 @@
 <script>
-  import background0 from "$img/background0.jpg";
-  import background1 from "$img/background1.jpg";
-  import background2 from "$img/background2.jpg";
-  import background3 from "$img/background3.jpg";
+  // Get images
+  import { wallpapers, DEFAULT } from "$modules/wallpapers";
+  import { storage } from "$modules/store";
 
-  let images = [background0, background1, background2, background3];
+  // Wallpaper collection and index
+  let wallpaperCollection = storage.get("wallpaperCollection");
+  if (!$wallpaperCollection)
+    wallpaperCollection = storage.set("wallpaperCollection", DEFAULT);
+  let wallpaperIndex = storage.get("wallpaperIndex");
+  if (!$wallpaperIndex) wallpaperIndex = storage.set("wallpaperIndex", DEFAULT);
+
+  // Custom wallpapers
+  let customWallpapers = storage.get("wallpapers");
+  if (!$customWallpapers) customWallpapers = storage.set("wallpapers", []);
+
+  // Get chosen wallpapers
+  let collection = $wallpaperCollection ? customWallpapers : wallpapers;
+  let images = [];
+  $: if ($wallpaperIndex != undefined)
+    images = collection[$wallpaperIndex].images;
+
+  // Image sliding logic
   let activeIndex = 0;
   let behindIndex = 1;
   let spans = [];
